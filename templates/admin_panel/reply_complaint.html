@@ -1,0 +1,27 @@
+{% extends 'admin_panel/admin_home.html' %}
+{% load crispy_forms_filters %}
+{% block content %}
+<div class="col-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Reply Complaint</h4>
+                  <p class="card-description">
+<!--                    Basic form elements-->
+                  </p>
+                  <form class="forms-sample" method="post">
+                      {% csrf_token %}
+                      <div class="form-group">
+                          <label class="form-control-label">Complaint</label>
+                          <input required class="form-control" readonly value="{{c.complaint}}">
+                      </div>
+                      <div class="form-group">
+                          <label for="company" class="form-control-label">reply</label>
+                          <textarea cols="5" rows="7" required id="company" class="form-control" name="reply">
+                          </textarea>
+                      </div>
+                      <button type="submit" class="btn btn-primary">submit</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'admin_panel/admin_home.html' %}
+{% load crispy_forms_filters %}
+{% block content %}
+<div class="col-lg-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Complaint Table</h4>
+<!--                  <p class="card-description">-->
+<!--                    Add class <code>.table</code>-->
+<!--                  </p>-->
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>SL NO.</th>
+                          <th>Customer</th>
+                          <th>Date</th>
+
+                          <th>complaint</th>
+                          <th>Status</th>
+
+
+
+                        </tr>
+                         {% for i in c %}
+                      <tr>
+                          <td>{{forloop.counter}}</td>
+                          <td>{{i.user}}</td>
+                          <td>{{i.date}}</td>
+                          <td>{{i.complaint}}</td>
+                          <td>
+                              {% if i.reply == None %}
+                              <a href="{% url 'reply_complaint' i.id %}">REPLY NOW</a>
+                              {% else %}
+                              {{i.reply}}
+                              {% endif %}
+                          </td>
+                      </tr>
+                         {% endfor %}
+                      </thead>
+                      <tbody>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+        {% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'admin_panel/admin_home.html' %}
+{% load crispy_forms_filters %}
+{% block content %}
+<div class="col-lg-8 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">REVIEWS</h4>
+<!--                  <p class="card-description">-->
+<!--                    Add class <code>.table</code>-->
+<!--                  </p>-->
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>SL NO.</th>
+                          <th>Item</th>
+                          <th>Customer</th>
+                          <th>Review</th>
+                          <th>Rating</th>
+                          <td>Date</td>
+                          <th>delete</th>
+
+
+
+                        </tr>
+                        {% for i in r %}
+                      <tr>
+                          <td>{{forloop.counter}}</td>
+                          <td>{{i.item}}</td>
+                          <td>{{i.customer}}</td>
+                          <td>{{i.review}}</td>
+                          <td>{{i.rating}}</td>
+                          <td>{{i.date_added}}</td>
+                          <td>
+                              <form action="{% url 'delete_review' i.id %}" method="post">
+                {% csrf_token %}
+              <button type="submit" class="btn btn-danger">Delete</button>
+              </form>
+                          </td>
+                          {% endfor %}
+                      </tr>
+                      </thead>
+                      <tbody>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+        {% endblock %}
